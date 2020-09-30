@@ -31,16 +31,16 @@
                 <input type="text" class="form-control" id="name">
               </div>
               <div class="form-group">
-                <label for="Party-Size">Party Size </label>
-                <input type="text" class="form-control" id="party-size">
+                <label for="phone number">Phone Number</label>
+                <input type="text" class="form-control" id="phone">
               </div>
               <div class="form-group">
-                <label for="booth">booth</label>
-                <input type="text" class="form-control" id="booth">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email">
               </div>
               <div class="form-group">
-                <label for="table">table</label>
-                <input type="text" class="form-control" id="table">
+                <label for="id">id</label>
+                <input type="text" class="form-control" id="id">
               </div>
             </form>
             <br>
@@ -56,14 +56,14 @@
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
-      var newCharacter = {
+      var reservations = {
         name: $("#name").val().trim(),
-        partySize: $("party-size").val().trim(),
-        booth: $("#booth").val().trim(),
-        table: $("#table").val().trim()
+        phone: $("#phone").val().trim(),
+        email: $("#email").val().trim(),
+        id: $("#id").val().trim()
       };
       // Question: What does this code do??
-      $.post("/api/characters", newCharacter)
+      $.post("/api/reservations", reservations)
         .then(function(data) {
           console.log("add.html", data);
           alert("Adding character...");
