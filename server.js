@@ -10,13 +10,27 @@ app.use(express.json());
 
 // Reservation Data
 // =============================================================
-const reservations = [
+let reservations = [
   {
     routeName: "bob",
     name: "bob",
     number: "479-409-0876",
     email: "johndoe@gmail.com",
     id: "i'm awesome"
+  },
+  {
+    routeName: "bob's biceps",
+    name: "bob",
+    number: "830-494-2840",
+    email: "random@gmail.com",
+    id: 1200
+  },
+  {
+    routeName: "bob3",
+    name: "Bob's Triceps",
+    number: "512-000-0000",
+    email: "atthegym@gmail.com",
+    id: 1350
   },
   {
     routeName: "bob's biceps",
@@ -53,7 +67,11 @@ app.get("/api/reservations", function(req, res) {
   return res.json(reservations);
 });
 
-// Displays a single character, or returns false
+app.get("/api/waitlist", function(req, res) {
+    return res.json(waitList);
+});
+
+// Displays a single reservation, or returns false
 app.get("/api/reservations/:reservations", function(req, res) {
   var chosen = req.params.reservations;
 
@@ -67,28 +85,28 @@ app.get("/api/reservations/:reservations", function(req, res) {
 
   return res.json(false);
 });
+console.log(reservations.length)
 
-// Create New reservations - takes in JSON input
-app.post("/api/reservations", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
-  var newReservation = req.body;
+    // Create New reservations - takes in JSON input
+    app.post("/api/reservations", function(req, res) {
+    
+        let newReservation = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newReservation = newReservation.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newReservation);
-    if (reservations.length <= 5){
-        //add to tables
-        reservations.push(newReservation);
-        res.json(newReservation);
-    } else {
-        //add to wait list
-        waitList.push(newReservation);
-        res.json(newReservation);
-    }
-});
+        console.log(newReservation);
+        
+        if (reservations.length < 5){
+            //add to tables
+            reservations.push(newReservation);
+            res.json(newReservation);
+            alert("Your table is ready!");
+            console.log("Your table is ready!");
+        } else {
+            waitList.push(newReservation);
+            res.json(newReservation);
+            alert("You have been added to the wait list!");
+            console.log("You have been added to the wait list!");
+        }
+    });
 
 // Starts the server to begin listening
 // =============================================================
