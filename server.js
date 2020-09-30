@@ -1,3 +1,7 @@
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+$(selector).hide();
+
 //Allows us to use express.js
 const express = require("express");
 const path = require("path");
@@ -49,7 +53,26 @@ let reservations = [
 ];
 
 let waitList = [];
+const {routeName, name, number, email, id} = reservations
 
+
+$('#tables').append(`<div class="card-body">
+<div id="stats">
+  <h3><strong>Name:</strong> <span>${name}</span></h3>
+  <h3><strong>Email:</strong> <span>${email}</span></h3>
+  <h3><strong>Phone:</strong> <span>${phone}</span></h3>
+  <h3><strong>Id:</strong> <span>${id}</span></h3>
+</div>
+</div>`);
+
+$('#waitList').append(`<div class="card-body">
+<div id="stats">
+  <h3><strong>Name:</strong> <span>${waitList.name}</span></h3>
+  <h3><strong>Email:</strong> <span>${waitList.email}</span></h3>
+  <h3><strong>Phone:</strong> <span>${waitList.phone}</span></h3>
+  <h3><strong>Id:</strong> <span>${waitList.id}</span></h3>
+</div>
+</div>`);
 // Routes
 // =============================================================
 
@@ -113,4 +136,5 @@ console.log(reservations.length)
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
 

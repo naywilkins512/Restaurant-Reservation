@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/naywilkins512/Restaurant-Reservation#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jquery": "^3.5.1" 
   }
 }
